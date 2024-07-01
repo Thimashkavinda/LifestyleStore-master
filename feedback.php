@@ -1,18 +1,13 @@
 <?php
 
-// Manager Class
 $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
-// Query Class (removed the query condition)
 $query = new MongoDB\Driver\Query([]);
 
-// Output of the executeQuery will be object of MongoDB\Driver\Cursor class
 $cursor = $manager->executeQuery('nibm.customers', $query); // Assuming 'NIBM' is the database and 'customers' is the collection
 
-// Convert cursor to Array
 $documents = $cursor->toArray();
 
-// Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $name = $_POST['name'];
@@ -20,19 +15,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age = $_POST['age'];
     $feedback = $_POST['feedback'];
     
-    // Create new document object
     $document = new stdClass();
     $document->name = $name;
     $document->email = $email;
     $document->age = $age;
     $document->feedback = $feedback;
     
-    // Insert document into MongoDB collection
     $bulkWrite = new MongoDB\Driver\BulkWrite();
     $bulkWrite->insert($document);
     $manager->executeBulkWrite('nibm.customers', $bulkWrite);
     
-    // Redirect to the same page to refresh the records
     header("Location: {$_SERVER['PHP_SELF']}");
     exit;
 }
@@ -49,22 +41,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        #name {
             width: 400px;
             height:50px; 
-            margin:20px; /* You can change this value to adjust the width */
+            margin:20px; 
         }
         #email {
             width: 400px;
             height:50px;
-            margin:20px; /* You can change this value to adjust the width */
+            margin:20px;
         }
         #age {
             width: 400px; 
             height:20px;
-            margin:20px; /* You can change this value to adjust the width */
+            margin:20px; 
         }
         #feedback {
             width: 400px; 
             height:100px;
-            margin:20px; /* You can change this value to adjust the width */
+            margin:20px; 
         }
         .{
             color:red;
