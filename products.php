@@ -406,6 +406,7 @@
                <center>
                    <p>Copyright &copy Galle TN Store. All Rights Reserved. | Contact Us: +94 705207058</p>
                    <p>This website is developed by GAHDSE231F</p>
+			<p>okay</p>
                </center>
                </div>
            </footer>
